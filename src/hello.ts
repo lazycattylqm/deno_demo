@@ -1,2 +1,3 @@
-const site = await fetch("https://www.deno.com");
-console.log(await site.text());
+Deno.serve((_request: Request) => {
+  return new Response("Hello, world!");
+});
