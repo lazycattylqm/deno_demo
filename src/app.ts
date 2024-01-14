@@ -1,13 +1,9 @@
-import { serve } from "https://deno.land/std@$STD_VERSION/http/server.ts";
+import { Application } from "https://deno.land/x/oak@v12.6.2/mod.ts";
 
-const port = 8080;
+const app = new Application();
 
-const handler = (request: Request): Response => {
-  const body = `Your user-agent is:\n\n${request.headers.get("user-agent") ?? "Unknown"
-    }`;
+app.use((ctx) => {
+  ctx.response.body = "Hello World! this is oka deno";
+});
 
-  return new Response(body, { status: 200 });
-};
-
-console.log(`HTTP webserver running. Access it at: http://localhost:8080/`);
-await serve(handler, { port });
+await app.listen({ port: 8000 });
